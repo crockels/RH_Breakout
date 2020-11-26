@@ -23,42 +23,29 @@ namespace breakout_game
 
     public partial class Form1 : Form
     {
-
         bool go_left = false, go_right = false;
-
         int speed = 10;
-
         int ball_x = 5;
-
         int ball_y = 5;
-
         int score = 0;
 
         private Random rand = new Random();
 
         private void keyisdown(object sender, KeyEventArgs e)
         {
-
             if (e.KeyCode == Keys.Left && player.Left > 0) { go_left = true; }
-
             if (e.KeyCode == Keys.Right && player.Left + player.Width < 920) { go_right = true; }
-
         }
 
         private void keyisup(object sender, KeyEventArgs e)
         {
-
             if (e.KeyCode == Keys.Left) { go_left = false; }
-
             if (e.KeyCode == Keys.Right) { go_right = false; }
-
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-
             ball.Left += ball_x;
-
             ball.Top += ball_y;
 
             label1.Text = "Score: " + score;
