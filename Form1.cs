@@ -29,18 +29,30 @@ namespace breakout_game
         int ball_y = 5;
         int score = 0;
 
+        private const int FormWidth = 920;
+
         private Random rand = new Random();
 
-        private void keyisdown(object sender, KeyEventArgs e)
+        private void Keyisdown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Left && player.Left > 0) { go_left = true; }
-            if (e.KeyCode == Keys.Right && player.Left + player.Width < 920) { go_right = true; }
+            if (e.KeyCode == Keys.S && CanGoLeft() ) { go_left = true; }
+            if (e.KeyCode == Keys.D && CanGoRight()) { go_right = true; }
+        }
+
+        private bool CanGoLeft()
+        {
+            return player.Left > 0;
+        }
+
+        private bool CanGoRight()
+        {
+            return player.Left + player.Width < FormWidth;
         }
 
         private void keyisup(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Left) { go_left = false; }
-            if (e.KeyCode == Keys.Right) { go_right = false; }
+            if (e.KeyCode == Keys.S) { go_left = false; }
+            if (e.KeyCode == Keys.D) { go_right = false; }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -52,11 +64,11 @@ namespace breakout_game
 
             if (go_left && player.Left > 0) { player.Left -= speed; }
 
-            if (go_right && player.Left > 700) { player.Left += speed; }
+            if (go_right && player.Left < 700) { player.Left += speed; }
 
             if (player.Left < 0) { go_left = false; }
 
-            else if (player.Left + player.Width > 920) { go_right = false; }
+            else if (player.Left + player.Width > FormWidth) { go_right = false; }
 
             if (ball.Left + ball.Width > ClientSize.Width || ball.Left < 0) { ball_x = -ball_x; }
 
