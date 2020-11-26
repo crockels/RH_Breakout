@@ -35,8 +35,8 @@ namespace breakout_game
 
         private void Keyisdown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.S && CanGoLeft() ) { go_left = true; }
-            if (e.KeyCode == Keys.D && CanGoRight()) { go_right = true; }
+            if (e.KeyCode == Keys.Left && CanGoLeft() ) { go_left = true; }
+            if (e.KeyCode == Keys.Right && CanGoRight()) { go_right = true; }
         }
 
         private bool CanGoLeft()
@@ -51,8 +51,8 @@ namespace breakout_game
 
         private void keyisup(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.S) { go_left = false; }
-            if (e.KeyCode == Keys.D) { go_right = false; }
+            if (e.KeyCode == Keys.Left) { go_left = false; }
+            if (e.KeyCode == Keys.Right) { go_right = false; }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -125,6 +125,20 @@ namespace breakout_game
 
             timer1.Stop();
 
+        }
+
+        // PreviewKeyDown is where you preview the key.
+        // Do not put any logic here, instead use the
+        // KeyDown event after setting IsInputKey to true.
+        private void player_OnPreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Left:
+                case Keys.Right:
+                    e.IsInputKey = true;
+                    break;
+            }
         }
 
     }

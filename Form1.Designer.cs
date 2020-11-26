@@ -436,6 +436,7 @@
             this.player.UseVisualStyleBackColor = true;
             this.player.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Keyisdown);
             this.player.KeyUp += new System.Windows.Forms.KeyEventHandler(this.keyisup);
+            this.player.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.player_OnPreviewKeyDown);
             // 
             // ball
             // 
